@@ -18,7 +18,7 @@ This document provides a comprehensive guide to the naming conventions used for 
 12. [Triggers](triggers.md)
 13. [Sequences](sequences.md)
 14. [Abbreviations](abbreviations.md)
-15. [Examples](examples/)
+15. [Examples](examples.md)
 
 ## Key Principles
 
