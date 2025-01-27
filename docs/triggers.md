@@ -11,14 +11,14 @@ This section outlines the naming conventions for triggers within our PostgreSQL 
 
 ### 2. Naming Format
 
-- Use the format `trg_<table_name>_<action>_<timing>` for trigger names. This identifies the table, action, and the timing of the trigger.
+- Use the format `t_<table_name>_<action>_<timing>` for trigger names. This identifies the table, action, and the timing of the trigger.
   - `<action>`: The type of operation that activates the trigger (e.g., `insert`, `update`, `delete`).
   - `<timing>`: The timing of the trigger (e.g., `before`, `after`, `instead_of`).
 
 ```sql
 -- Good
-CREATE TRIGGER trg_orders_before_insert BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order();
-CREATE TRIGGER trg_customers_after_update AFTER UPDATE ON customers FOR EACH ROW EXECUTE FUNCTION log_customer_changes();
+CREATE TRIGGER t_orders_before_insert BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order();
+CREATE TRIGGER t_customers_after_update AFTER UPDATE ON customers FOR EACH ROW EXECUTE FUNCTION log_customer_changes();
 
 -- Bad
 CREATE TRIGGER trg_orders_insert BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order(); -- Vague
@@ -27,7 +27,7 @@ CREATE TRIGGER beforeInsertOrders BEFORE INSERT ON orders FOR EACH ROW EXECUTE F
 
 ### 3. Avoid Other Prefixes
 
-- Avoid adding redundant prefixes like `trigger_` to the trigger name. The `trg_` prefix already indicates that it's a trigger.
+- Avoid adding redundant prefixes like `trigger_` to the trigger name. The `t_` prefix already indicates that it's a trigger.
 
 ```sql
 -- Avoid
@@ -40,7 +40,7 @@ trigger_orders_before_insert -- Redundant prefix
 
 ```sql
 -- Example
-CREATE TRIGGER sales.trg_orders_before_insert BEFORE INSERT ON sales.orders FOR EACH ROW EXECUTE FUNCTION validate_order();
+CREATE TRIGGER sales.t_orders_before_insert BEFORE INSERT ON sales.orders FOR EACH ROW EXECUTE FUNCTION validate_order();
 ```
 
 ### 5. Special Characters
@@ -53,7 +53,7 @@ CREATE TRIGGER sales.trg_orders_before_insert BEFORE INSERT ON sales.orders FOR 
 
 ## Rationale
 
-- **Clarity**: The `trg_<table_name>_<action>_<timing>` format clearly indicates the table, action, and timing associated with the trigger.
+- **Clarity**: The `t_<table_name>_<action>_<timing>` format clearly indicates the table, action, and timing associated with the trigger.
 - **Consistency**: Consistent naming conventions improve the overall readability and maintainability of the database schema.
 - **Maintainability**: Well-named triggers are easier to manage, modify, and debug over time.
 - **Scalability**: Clear naming conventions are especially important in large schemas with numerous triggers.
@@ -64,26 +64,26 @@ CREATE TRIGGER sales.trg_orders_before_insert BEFORE INSERT ON sales.orders FOR 
 
 ```sql
 -- Before insert trigger
-CREATE TRIGGER trg_orders_before_insert BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order();
+CREATE TRIGGER t_orders_before_insert BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order();
 
 -- After update trigger
-CREATE TRIGGER trg_customers_after_update AFTER UPDATE ON customers FOR EACH ROW EXECUTE FUNCTION log_customer_changes();
+CREATE TRIGGER t_customers_after_update AFTER UPDATE ON customers FOR EACH ROW EXECUTE FUNCTION log_customer_changes();
 
 -- Using schema-qualified name
-CREATE TRIGGER sales.trg_orders_before_insert BEFORE INSERT ON sales.orders FOR EACH ROW EXECUTE FUNCTION validate_order();
+CREATE TRIGGER sales.t_orders_before_insert BEFORE INSERT ON sales.orders FOR EACH ROW EXECUTE FUNCTION validate_order();
 ```
 
 **Bad Trigger Definitions**:
 
 ```sql
 -- Vague naming
-CREATE TRIGGER trg_orders_insert BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order();
+CREATE TRIGGER t_orders_insert BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order();
 
 -- Mixed case and unclear purpose
 CREATE TRIGGER beforeInsertOrders BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order();
 
 -- Redundant suffix
-CREATE TRIGGER trg_orders_insert_trg BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order();
+CREATE TRIGGER orders_insert_trg BEFORE INSERT ON orders FOR EACH ROW EXECUTE FUNCTION validate_order();
 ```
 
 ## Exceptions
@@ -96,10 +96,10 @@ Document any exceptions to these rules in the [Exceptions](exceptions.md) file.
 ## Best Practices
 
 - **Use Triggers for Automation**: Use triggers to enforce business rules or automate repetitive tasks at the database level.
-- **Versioning and Documentation**: When modifying triggers, consider versioning them (e.g., `trg_orders_before_insert_v2`) to ensure backward compatibility while making improvements. Maintain clear documentation of changes to facilitate understanding and collaboration among team members.
+- **Versioning and Documentation**: When modifying triggers, consider versioning them (e.g., `t_orders_before_insert_v2`) to ensure backward compatibility while making improvements. Maintain clear documentation of changes to facilitate understanding and collaboration among team members.
 - **Comment Your Triggers**: Use the `COMMENT` command in SQL to describe the purpose of each trigger. For example:
   ```sql
-  COMMENT ON TRIGGER trg_orders_before_insert ON orders IS 'Validates orders before inserting them into the orders table. Ensures all mandatory fields are populated and checks for duplicate entries.';
+  COMMENT ON TRIGGER t_orders_before_insert ON orders IS 'Validates orders before inserting them into the orders table. Ensures all mandatory fields are populated and checks for duplicate entries.';
   ```
 - **Avoid Overusing Triggers**: Use triggers judiciously, as excessive use can make the database harder to debug and maintain.
 - **Secure Trigger Functions**: Ensure that the functions executed by triggers are optimized and secure to prevent performance bottlenecks or vulnerabilities.

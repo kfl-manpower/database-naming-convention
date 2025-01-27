@@ -59,13 +59,13 @@ For a detailed explanation of each section and examples, please refer to the lin
 
 ### Triggers
 
-- **Prefix**: `trg_`
-- **Format**: `trg_<table>_<event>_<timing>`
-- **Example**: `trg_orders_after_insert`
+- **Prefix**: `t_`
+- **Format**: `t_<table>_<event>_<timing>`
+- **Example**: `t_orders_after_insert`
 
 **Rationale**:
 
-- Prefixing triggers (`tr_`) ensures they are distinct and easily recognizable.
+- Prefixing triggers (`t_`) ensures they are distinct and easily recognizable.
 - Triggers are standalone objects tied to table events but perform independent actions.
 
 ### Sequences
