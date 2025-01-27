@@ -54,7 +54,7 @@ For a detailed explanation of each section and examples, please refer to the lin
 
 **Rationale**:
 
-- Prefixing stored procedures (`sp_`) highlights their role as executable logic units.
+- Prefixing stored procedures (`p_`) highlights their role as executable logic units.
 - This convention separates stored procedures from tables, views, and triggers in schema browsers.
 
 ### Triggers
@@ -120,14 +120,14 @@ For a detailed explanation of each section and examples, please refer to the lin
 
 ## Summary Table
 
-| **Object Type**   | **Prefix** | **Suffix** | **Example**              |
-| ----------------- | ---------- | ---------- | ------------------------ |
-| Views             | `v_`       | None       | `v_employee_summary`     |
-| Stored Procedures | `sp_`      | None       | `sp_calculate_tax`       |
-| Triggers          | `tr_`      | None       | `tr_orders_after_insert` |
-| Sequences         | `seq_`     | None       | `seq_customer_id`        |
-| Primary Keys      | None       | `_pk`      | `orders_pk`              |
-| Foreign Keys      | None       | `_fk`      | `orders_customer_fk`     |
-| Indexes           | None       | `_idx`     | `products_name_idx`      |
+| **Object Type**   | **Prefix** | **Suffix** | **Example**             |
+| ----------------- | ---------- | ---------- | ----------------------- |
+| Views             | `v_`       | None       | `v_employee_summary`    |
+| Stored Procedures | `p_`       | None       | `p_calculate_tax`       |
+| Triggers          | `t_`       | None       | `t_orders_after_insert` |
+| Sequences         | `seq_`     | None       | `seq_customer_id`       |
+| Primary Keys      | None       | `_pk`      | `orders_pk`             |
+| Foreign Keys      | None       | `_fk`      | `orders_customer_fk`    |
+| Indexes           | None       | `_idx`     | `products_name_idx`     |
 
 ---
